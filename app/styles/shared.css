@@ -32,7 +32,7 @@
 }
 
 html {
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 body {
@@ -92,6 +92,10 @@ button {
 
 #logo a {
   color: inherit;
+}
+
+#img-logo {
+  max-width: 100px;
 }
 
 .cta {
@@ -276,4 +280,3 @@ button {
     transform: translateY(0);
   }
 }
-
