@@ -1,5 +1,3 @@
-import type { IconType } from "react-icons";
-
 function PricingPlan({
   title,
   price,
@@ -9,15 +7,12 @@ function PricingPlan({
   title: string;
   price: number;
   perks: string[];
-  icon: IconType;
+  icon: React.JSX.Element;
 }) {
-  const Icon = icon;
   return (
     <article>
       <header>
-        <div className="icon">
-          <Icon />
-        </div>
+        <div className="icon">{icon}</div>
         <h2>{title}</h2>
         <p>{price}</p>
       </header>
