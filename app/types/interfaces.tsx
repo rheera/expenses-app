@@ -1,7 +1,12 @@
-export interface ChartBar {
+export interface ChartBarInterface {
   maxValue: number;
   value: number;
   label: string;
 }
 
-export interface Expense {}
+export interface Expense {
+  id: string;
+  title: string;
+  amount: number;
+  date: string;
+}

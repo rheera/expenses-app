@@ -36,4 +36,6 @@
 
 .icon-img svg {
   animation: fade-slide-up 1.5s ease-out forwards;
+  width: 2rem;
+  height: 2rem;
 }

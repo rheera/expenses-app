@@ -1,6 +1,6 @@
-import { ChartBar } from "~/types/interfaces";
+import type { ChartBarInterface } from "~/types/interfaces";
 
-const ChartBar = ({ maxValue, value, label }: ChartBar) => {
+const ChartBar = ({ maxValue, value, label }: ChartBarInterface) => {
   let barFillHeight = "0%";
 
   if (maxValue > 0) {
