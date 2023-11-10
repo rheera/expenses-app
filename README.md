@@ -1,8 +1,26 @@
-# Welcome to Remix!
+# Expenses App - An app to keep track of all your expenses
 
-- [Remix Docs](https://remix.run/docs)
+Part of Academind's Remix.js Practical Guide but updated to be made with TypeScript and Remix v2. A site where people can keep track of their expenses. Contains user authentication so each user can only access their own expenses. Live link:
 
-## Development
+## Table of Contents
+
+- [Tools](#tools)
+- [Features to Add](#features-to-add)
+- [Quick Start](#quick-start)
+
+## Tools
+
+Made with Remix (React, React Router), TypeScript.
+
+## Features to add
+
+- [ ] Finish app
+
+## Stretch Goals
+
+- [ ] Finish base app first
+
+## Quick Start
 
 From your terminal:
 
@@ -12,7 +30,7 @@ npm run dev
 
 This starts your app in development mode, rebuilding assets on file changes.
 
-## Deployment
+### Deployment
 
 First, build your app for production:
 
