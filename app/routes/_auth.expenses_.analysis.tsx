@@ -1,9 +1,6 @@
 import Chart from "~/components/expenses/Chart";
 import ExpenseStatistics from "~/components/expenses/ExpenseStatistics";
-import type { LinksFunction } from "@remix-run/node";
-import styles from "~/styles/expenses.css";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 const DUMMY_EXPENSES = [
   {
     id: "e1",

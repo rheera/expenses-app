@@ -5,7 +5,7 @@ function PricingPlan({
   icon,
 }: {
   title: string;
-  price: number;
+  price: number | string;
   perks: string[];
   icon: React.JSX.Element;
 }) {
