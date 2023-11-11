@@ -1,5 +1,4 @@
-# Spendy - An app to keep track of all your expenses
-<img src="https://github.com/rheera/spendy/blob/beeb5f6b0d712b7f56be03f9a1448529e3bac76d/app/assets/spendy-logo-gray-shadow.png" alt="Spendy Logo" width="200" height="200"/>
+# <img src="https://github.com/rheera/spendy/blob/beeb5f6b0d712b7f56be03f9a1448529e3bac76d/app/assets/spendy-logo-gray-shadow.png" alt="Spendy Logo" width="200" height="200"/> Spendy - An app to keep track of all your expenses
 Part of Academind's Remix.js Practical Guide but updated to be made with TypeScript and Remix v2. A site where people can keep track of their expenses. Contains user authentication so each user can only access their own expenses. Live link:
 
 ## Table of Contents
