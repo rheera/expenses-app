@@ -112,7 +112,9 @@ button {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   min-width: 182px;
 }
-
+.cta-login {
+  min-width: unset;
+}
 .cta:hover {
   background-color: var(--color-secondary-600);
 }

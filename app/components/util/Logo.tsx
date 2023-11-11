@@ -1,11 +1,12 @@
+import { Link } from "@remix-run/react";
 import logo from "~/assets/spendy-logo-purple-dark.png";
 
 function Logo() {
   return (
     <h1 id="logo">
-      <a href="/">
+      <Link to="/">
         <img id="img-logo" src={logo} alt="Spendy Logo" />
-      </a>
+      </Link>
     </h1>
   );
 }
