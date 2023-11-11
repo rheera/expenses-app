@@ -9,7 +9,6 @@ export const links: LinksFunction = () => [
 export default function Auth() {
   return (
     <main>
-      <h1>Im Auth</h1>
       <AuthForm />
     </main>
   );

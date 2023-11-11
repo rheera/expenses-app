@@ -1,3 +1,18 @@
-export default function ExpensesRaw() {
-  return <h1>Hi I'm ExpensesRaw</h1>;
-}
+const DUMMY_EXPENSES = [
+  {
+    id: "e1",
+    title: "First expense",
+    amount: 12.99,
+    date: new Date().toISOString(),
+  },
+  {
+    id: "e2",
+    title: "Second expense",
+    amount: 16.99,
+    date: new Date().toISOString(),
+  },
+];
+
+export const loader = () => {
+  return DUMMY_EXPENSES;
+};
