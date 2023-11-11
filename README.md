@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/rheera/spendy/blob/beeb5f6b0d712b7f56be03f9a1448529e3bac76d/app/assets/spendy-logo-gray-shadow.png" alt="Spendy Logo" width="200" height="200" /> 
+    <img src="https://github.com/rheera/spendy/blob/beeb5f6b0d712b7f56be03f9a1448529e3bac76d/app/assets/spendy-logo-gray-shadow.png?raw=true" alt="Spendy Logo" width="200" height="200"/>
 </p>
 
 # Spendy - An app to keep track of all your expenses
