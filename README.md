@@ -3,6 +3,7 @@
 </p>
 
 # Spendy - An app to keep track of all your expenses
+
 Part of Academind's Remix.js Practical Guide but updated to be made with TypeScript and Remix v2. A site where people can keep track of their expenses. Contains user authentication so each user can only access their own expenses. Live link:
 
 ## Table of Contents
@@ -13,7 +14,7 @@ Part of Academind's Remix.js Practical Guide but updated to be made with TypeScr
 
 ## Tools
 
-Made with Remix (React, React Router), TypeScript.
+Made with Remix (React, React Router), TypeScript, MongoDB, Prisma, heroicons.
 
 ## Features to add
 

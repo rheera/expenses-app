@@ -3,8 +3,11 @@ import { Link } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Spendy" },
+    {
+      name: "Spendy - Expense Tracking App",
+      content: "Welcome to Sepndy, track your expenses!",
+    },
   ];
 };
 
