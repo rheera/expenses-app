@@ -4,9 +4,12 @@ export interface ChartBarInterface {
   label: string;
 }
 
-export interface Expense {
-  id: string;
+export interface AddExpense {
   title: string;
   amount: number;
   date: string;
+}
+
+export interface Expense extends AddExpense {
+  id: string;
 }
