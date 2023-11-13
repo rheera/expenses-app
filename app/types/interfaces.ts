@@ -6,7 +6,7 @@ export interface ChartBarInterface {
 
 export interface AddExpense {
   title: string;
-  amount: number;
+  amount: number | string;
   date: string;
 }
 
