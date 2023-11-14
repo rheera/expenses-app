@@ -1,25 +1,20 @@
-import { redirect, type ActionFunctionArgs, json } from "@remix-run/node";
+import { redirect, type ActionFunctionArgs } from "@remix-run/node";
 import { useNavigate } from "@remix-run/react";
 import ExpenseForm from "~/components/expenses/ExpenseForm";
 import Modal from "~/components/util/Modal";
 import { addExpense } from "~/data/expenses.server";
-import { z } from "zod";
-
-const addExpenseSchema = z.object({
-  title: z.string(),
-  amount: z.string(),
-  date: z.string(),
-});
+import { validateExpenseInput } from "~/data/validation.server";
+import type { AddExpense } from "~/types/interfaces";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = Object.fromEntries(await request.formData());
   try {
-    const expenseData = addExpenseSchema.parse(formData);
-    await addExpense(expenseData);
+    validateExpenseInput(formData);
+    // probably should use zod to check this type but we're already validating with our validation function
+    await addExpense(formData as unknown as AddExpense);
     return redirect("/expenses");
   } catch (error) {
-    console.log(`form error ${error}`);
-    return json({ error });
+    return error;
   }
 };
 

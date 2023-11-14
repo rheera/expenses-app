@@ -14,13 +14,13 @@ Part of Academind's Remix.js Practical Guide but updated to be made with TypeScr
 
 ## Tools
 
-Made with Remix (React, React Router), TypeScript, MongoDB, Prisma, Zod, heroicons.
+Made with Remix (React, React Router), TypeScript, MongoDB, Prisma, heroicons.
 
 ## Features to add
 
 - [x] Build routes and their pages
 - [x] Add MongoDB backend and connect it to Remix with Prisma
-- [ ] Use Zod to validate Form data to send to backend
+- [ ] Validate Form data on server and client side to send to database
 
 ## Stretch Goals
 

@@ -6,10 +6,16 @@ export interface ChartBarInterface {
 
 export interface AddExpense {
   title: string;
-  amount: number | string;
+  amount: string;
   date: string;
 }
 
 export interface Expense extends AddExpense {
   id: string;
+}
+
+export interface ValidationErrors {
+  title?: string;
+  amount?: string;
+  date?: string;
 }
