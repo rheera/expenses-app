@@ -1,7 +1,29 @@
-import { Form, Link, useActionData, useNavigation } from "@remix-run/react";
+import {
+  Form,
+  Link,
+  useActionData,
+  useLoaderData,
+  useNavigation,
+} from "@remix-run/react";
+import type { loader } from "~/routes/_auth.expenses.$id";
 import type { action } from "~/routes/_auth.expenses.add";
 
 function ExpenseForm() {
+  const expenseData = useLoaderData<typeof loader>();
+
+  // we have to slice the date since we don't want time only YYYY-MM-DD
+  const defaultFormValues = expenseData
+    ? {
+        title: expenseData.title,
+        amount: expenseData.amount,
+        date: expenseData.date.slice(0, 10),
+      }
+    : {
+        title: "",
+        amount: "",
+        date: "",
+      };
+
   const today = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
   const validationErrors = useActionData<typeof action>() as object;
 
@@ -12,7 +34,14 @@ function ExpenseForm() {
     <Form method="post" className="form" id="expense-form">
       <p>
         <label htmlFor="title">Expense Title</label>
-        <input type="text" id="title" name="title" required maxLength={30} />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          required
+          maxLength={30}
+          defaultValue={defaultFormValues.title}
+        />
       </p>
 
       <div className="form-row">
@@ -25,11 +54,19 @@ function ExpenseForm() {
             min="0"
             step="0.01"
             required
+            defaultValue={defaultFormValues.amount}
           />
         </p>
         <p>
           <label htmlFor="date">Date</label>
-          <input type="date" id="date" name="date" max={today} required />
+          <input
+            type="date"
+            id="date"
+            name="date"
+            max={today}
+            required
+            defaultValue={defaultFormValues.date}
+          />
         </p>
       </div>
       {validationErrors && (
