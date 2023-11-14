@@ -10,8 +10,12 @@ export interface AddExpense {
   date: string;
 }
 
-export interface Expense extends AddExpense {
+export interface Expense {
   id: string;
+  dateAdded: string;
+  title: string;
+  amount: number;
+  date: string;
 }
 
 export interface ValidationErrors {

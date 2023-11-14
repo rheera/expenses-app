@@ -1,22 +1,29 @@
-import { Link, Outlet } from "@remix-run/react";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import ExpensesList from "~/components/expenses/ExpensesList";
+import { getExpenses } from "~/data/expenses.server";
 
-const DUMMY_EXPENSES = [
-  {
-    id: "e1",
-    title: "First expense",
-    amount: 12.99,
-    date: new Date().toISOString(),
-  },
-  {
-    id: "e2",
-    title: "Second expense",
-    amount: 16.99,
-    date: new Date().toISOString(),
-  },
-];
+// const DUMMY_EXPENSES = [
+//   {
+//     id: "e1",
+//     title: "First expense",
+//     amount: 12.99,
+//     date: new Date().toISOString(),
+//   },
+//   {
+//     id: "e2",
+//     title: "Second expense",
+//     amount: 16.99,
+//     date: new Date().toISOString(),
+//   },
+// ];
+
+export const loader = () => {
+  return getExpenses();
+};
 
 export default function Expenses() {
+  const expenses = useLoaderData<typeof loader>();
+
   return (
     <>
       <Outlet />
@@ -53,7 +60,7 @@ export default function Expenses() {
             <span>Load raw data</span>
           </Link>
         </section>
-        <ExpensesList expenses={DUMMY_EXPENSES} />
+        <ExpensesList expenses={expenses} />
       </main>
     </>
   );
