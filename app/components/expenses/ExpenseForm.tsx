@@ -1,15 +1,31 @@
+import type { Expense } from "~/types/interfaces";
 import {
   Form,
   Link,
   useActionData,
-  useLoaderData,
+  useMatches,
   useNavigation,
+  useParams,
 } from "@remix-run/react";
-import type { loader } from "~/routes/_auth.expenses.$id";
 import type { action } from "~/routes/_auth.expenses.add";
 
 function ExpenseForm() {
-  const expenseData = useLoaderData<typeof loader>();
+  const params = useParams();
+  const matches = useMatches();
+  let expenseData;
+  // check if there are params, if so get the matching expense
+  if (Object.keys(params).length) {
+    const allExpenses = matches.find(
+      (match) => match.id === "routes/_auth.expenses"
+    )?.data;
+
+    // fully type check that it is an expense array
+    if (allExpenses && Array.isArray(allExpenses)) {
+      expenseData = allExpenses.find(
+        (expense: Expense) => expense.id === params.id
+      );
+    }
+  }
 
   // we have to slice the date since we don't want time only YYYY-MM-DD
   const defaultFormValues = expenseData
