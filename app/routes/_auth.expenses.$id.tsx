@@ -3,18 +3,29 @@ import { useNavigate } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import ExpenseForm from "~/components/expenses/ExpenseForm";
 import Modal from "~/components/util/Modal";
-import { updateExpense } from "~/data/expenses.server";
+import { deleteExpense, updateExpense } from "~/data/expenses.server";
 import { validateExpenseInput } from "~/data/validation.server";
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   invariant(params.id, "Missing expense id param");
-  const formData = Object.fromEntries(await request.formData());
-  try {
-    const validExpense = validateExpenseInput(formData);
-    await updateExpense(params.id, validExpense);
-    return redirect("/expenses");
-  } catch (error) {
-    return error;
+  const expenseId = params.id;
+  if (request.method === "PATCH") {
+    const formData = Object.fromEntries(await request.formData());
+    try {
+      const validExpense = validateExpenseInput(formData);
+      await updateExpense(expenseId, validExpense);
+      return redirect("/expenses");
+    } catch (error) {
+      return error;
+    }
+  } else if (request.method === "DELETE") {
+    try {
+      await deleteExpense(expenseId);
+      return redirect("/expenses");
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 };
 
