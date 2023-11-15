@@ -4,14 +4,13 @@ import ExpenseForm from "~/components/expenses/ExpenseForm";
 import Modal from "~/components/util/Modal";
 import { addExpense } from "~/data/expenses.server";
 import { validateExpenseInput } from "~/data/validation.server";
-import type { AddExpense } from "~/types/interfaces";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = Object.fromEntries(await request.formData());
   try {
-    validateExpenseInput(formData);
+    const validExpense = validateExpenseInput(formData);
     // probably should use zod to check this type but we're already validating with our validation function
-    await addExpense(formData as unknown as AddExpense);
+    await addExpense(validExpense);
     return redirect("/expenses");
   } catch (error) {
     return error;

@@ -1,4 +1,4 @@
-import type { ValidationErrors } from "./../types/interfaces";
+import type { AddExpense, ValidationErrors } from "./../types/interfaces";
 function isValidTitle(value: string) {
   return value && value.trim().length > 0 && value.trim().length <= 30;
 }
@@ -12,7 +12,7 @@ function isValidDate(value: string) {
   return value && new Date(value).getTime() < new Date().getTime();
 }
 
-export function validateExpenseInput(input: any) {
+export function validateExpenseInput(input: any): AddExpense {
   let validationErrors: ValidationErrors = {};
 
   if (!isValidTitle(input.title)) {
@@ -32,4 +32,11 @@ export function validateExpenseInput(input: any) {
   if (Object.keys(validationErrors).length > 0) {
     throw validationErrors;
   }
+
+  // if there's no errors, return the validated expense
+  return {
+    title: input.title,
+    amount: input.amount,
+    date: input.date,
+  };
 }

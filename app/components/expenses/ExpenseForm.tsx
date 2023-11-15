@@ -1,4 +1,4 @@
-import type { Expense } from "~/types/interfaces";
+import type { Expense, ValidationErrors } from "~/types/interfaces";
 import {
   Form,
   Link,
@@ -41,7 +41,7 @@ function ExpenseForm() {
       };
 
   const today = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
-  const validationErrors = useActionData<typeof action>() as object;
+  const validationErrors = useActionData<typeof action>() as ValidationErrors;
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state !== "idle";
