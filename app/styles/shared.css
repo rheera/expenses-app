@@ -185,6 +185,10 @@ button {
   font-size: 3rem;
 }
 
+.error .icon svg {
+  width: 100px;
+}
+
 .error h1,
 .error h2 {
   margin: 0.5rem 0;

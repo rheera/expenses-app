@@ -1,4 +1,4 @@
-function Error({
+function ErrorPage({
   title,
   children,
 }: {
@@ -29,4 +29,4 @@ function Error({
   );
 }
 
-export default Error;
+export default ErrorPage;

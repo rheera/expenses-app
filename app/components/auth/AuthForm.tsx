@@ -1,13 +1,16 @@
-import { Link, useSearchParams } from "@remix-run/react";
+import { Form, Link, useNavigation, useSearchParams } from "@remix-run/react";
 
 function AuthForm() {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state !== "idle";
+
   const [searchParams] = useSearchParams();
   const authMode = searchParams.get("mode") || "login";
 
   const getCaptions = () => {
     if (authMode === "login") {
       return {
-        submitBtnCaption: "Login",
+        submitBtnCaption: isSubmitting ? "Logging in..." : "Login",
         redirectCaption: "Create a new user",
         redirectParams: "?mode=signup",
         icon: (
@@ -28,7 +31,7 @@ function AuthForm() {
       };
     } else {
       return {
-        submitBtnCaption: "Sign up",
+        submitBtnCaption: isSubmitting ? "Signing up..." : "Sign up",
         redirectCaption: "Log in with existing user",
         redirectParams: "?mode=login",
         icon: (
@@ -48,7 +51,7 @@ function AuthForm() {
   const captions = getCaptions();
 
   return (
-    <form method="post" className="form" id="auth-form">
+    <Form method="post" className="form" id="auth-form">
       <div className="icon-img">{captions.icon}</div>
       <p>
         <label htmlFor="email">Email Address</label>
@@ -59,10 +62,10 @@ function AuthForm() {
         <input type="password" id="password" name="password" minLength={7} />
       </p>
       <div className="form-actions">
-        <button>{captions.submitBtnCaption}</button>
+        <button disabled={isSubmitting}>{captions.submitBtnCaption}</button>
         <Link to={captions.redirectParams}>{captions.redirectCaption}</Link>
       </div>
-    </form>
+    </Form>
   );
 }
 

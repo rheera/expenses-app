@@ -21,7 +21,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   } else if (request.method === "DELETE") {
     try {
       await deleteExpense(expenseId);
-      return redirect("/expenses");
+      return { deleteId: expenseId };
     } catch (error) {
       console.log(error);
       return error;
