@@ -1,26 +1,43 @@
+import { json } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
 import Chart from "~/components/expenses/Chart";
 import ExpenseStatistics from "~/components/expenses/ExpenseStatistics";
+import ErrorPage from "~/components/util/ErrorPage";
+import { getExpenses } from "~/data/expenses.server";
 
-const DUMMY_EXPENSES = [
-  {
-    id: "e1",
-    title: "First expense",
-    amount: 12.99,
-    date: new Date().toISOString(),
-  },
-  {
-    id: "e2",
-    title: "Second expense",
-    amount: 16.99,
-    date: new Date().toISOString(),
-  },
-];
+export const loader = async () => {
+  const expenses = await getExpenses();
+  if (!expenses || expenses.length === 0) {
+    console.log("here");
+    throw json(
+      { message: "Could not load expenses for analysis" },
+      { status: 404, statusText: "Expenses not found" }
+    );
+  }
+  return expenses;
+};
 
 export default function ExpensesAnalysis() {
+  const expenses = useLoaderData<typeof loader>();
+
   return (
     <main>
-      <Chart expenses={DUMMY_EXPENSES} />
-      <ExpenseStatistics expenses={DUMMY_EXPENSES} />
+      <Chart expenses={expenses} />
+      <ExpenseStatistics expenses={expenses} />
+    </main>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <main>
+      <ErrorPage title="Expenses not found">
+        <section id="no-expenses">
+          <p>
+            Start <Link to="/expenses/add">adding some</Link> today
+          </p>
+        </section>
+      </ErrorPage>
     </main>
   );
 }
