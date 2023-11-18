@@ -16,15 +16,14 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
       await updateExpense(expenseId, validExpense);
       return redirect("/expenses");
     } catch (error) {
-      return error;
+      throw error;
     }
   } else if (request.method === "DELETE") {
     try {
       await deleteExpense(expenseId);
       return { deleteId: expenseId };
     } catch (error) {
-      console.log(error);
-      return error;
+      throw error;
     }
   }
 };
