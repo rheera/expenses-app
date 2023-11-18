@@ -23,6 +23,7 @@ export const loader = () => {
 
 export default function Expenses() {
   const expenses = useLoaderData<typeof loader>();
+  const hasExpenses = expenses && expenses.length > 0;
 
   return (
     <>
@@ -60,7 +61,15 @@ export default function Expenses() {
             <span>Load raw data</span>
           </Link>
         </section>
-        <ExpensesList expenses={expenses} />
+        {hasExpenses && <ExpensesList expenses={expenses} />}
+        {!hasExpenses && (
+          <section id="no-expenses">
+            <h2>No expenses found</h2>
+            <p>
+              Start <Link to="add">adding some</Link> today
+            </p>
+          </section>
+        )}
       </main>
     </>
   );
