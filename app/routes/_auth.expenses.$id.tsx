@@ -16,7 +16,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
       await updateExpense(expenseId, validExpense);
       return redirect("/expenses");
     } catch (error) {
-      throw error;
+      return error;
     }
   } else if (request.method === "DELETE") {
     try {

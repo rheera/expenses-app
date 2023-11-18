@@ -68,21 +68,29 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
 
-  let errorContent: { message: string; statusText: string } = {
-    message: "Something went wrong. Please try again later.",
-    statusText: "Error",
-  };
-
-  if (isRouteErrorResponse(error)) {
-    errorContent = {
-      message: error.data.message || error.data,
-      statusText: error.statusText,
+  /**
+   *
+   * TODO: Fix this, right now if we have a instanceof Response the statusText stays as "Error"
+   */
+  function getErrorText(): { message: string; statusText: string } {
+    let errorContent = {
+      message: "Something went wrong. Please try again later.",
+      statusText: "Error",
     };
+    if (isRouteErrorResponse(error)) {
+      errorContent = {
+        message: error.data.message || error.data,
+        statusText: error.statusText,
+      };
+    } else if (error instanceof Error) {
+      errorContent.message = error.message;
+    } else if (error instanceof Response) {
+      errorContent.statusText = error.statusText;
+    }
+    return errorContent;
   }
 
-  if (error instanceof Error) {
-    errorContent.message = error.message;
-  }
+  const errorContent = getErrorText();
 
   return (
     <Document title={errorContent.statusText}>

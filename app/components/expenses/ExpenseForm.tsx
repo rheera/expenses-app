@@ -46,6 +46,15 @@ function ExpenseForm() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state !== "idle";
 
+  if (params.id && !expenseData) {
+    return (
+      <>
+        <p>Invalid Expense id</p>
+        <Link to="..">Return to expenses</Link>
+      </>
+    );
+  }
+
   return (
     <Form
       method={expenseData ? "patch" : "post"}

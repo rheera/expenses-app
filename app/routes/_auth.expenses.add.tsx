@@ -13,7 +13,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     await addExpense(validExpense);
     return redirect("/expenses");
   } catch (error) {
-    throw error;
+    return error;
   }
 };
 
