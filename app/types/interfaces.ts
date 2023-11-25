@@ -23,3 +23,8 @@ export interface ValidationErrors {
   amount?: string;
   date?: string;
 }
+
+export interface CredentialValidationErrors {
+  email?: string;
+  password?: string;
+}

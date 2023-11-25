@@ -1,4 +1,12 @@
-import { Form, Link, useNavigation, useSearchParams } from "@remix-run/react";
+import {
+  Form,
+  Link,
+  useActionData,
+  useNavigation,
+  useSearchParams,
+} from "@remix-run/react";
+import type { action } from "~/routes/_marketing.auth";
+import type { CredentialValidationErrors } from "~/types/interfaces";
 
 function AuthForm() {
   const navigation = useNavigation();
@@ -6,6 +14,10 @@ function AuthForm() {
 
   const [searchParams] = useSearchParams();
   const authMode = searchParams.get("mode") || "login";
+
+  const validationErrors = useActionData<
+    typeof action
+  >() as CredentialValidationErrors;
 
   const getCaptions = () => {
     if (authMode === "login") {
@@ -61,6 +73,13 @@ function AuthForm() {
         <label htmlFor="password">Password</label>
         <input type="password" id="password" name="password" minLength={7} />
       </p>
+      {validationErrors && (
+        <ul>
+          {Object.values(validationErrors).map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
       <div className="form-actions">
         <button disabled={isSubmitting}>{captions.submitBtnCaption}</button>
         <Link to={captions.redirectParams}>{captions.redirectCaption}</Link>
