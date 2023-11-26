@@ -4,7 +4,7 @@ import {
   type LinksFunction,
 } from "@remix-run/node";
 import AuthForm from "~/components/auth/AuthForm";
-import { signup } from "~/data/auth.server";
+import { login, signup } from "~/data/auth.server";
 import { validateCredentials } from "~/data/validation.server";
 import authStyles from "~/styles/auth.css";
 import { StatusError } from "~/types/interfaces";
@@ -21,14 +21,18 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   try {
     const validatedCredentials = validateCredentials(credentials);
     if (authMode === "login") {
-      // login logic
+      await login(validatedCredentials);
+      return redirect("/expenses");
     } else {
       await signup(validatedCredentials);
       return redirect("/expenses");
     }
   } catch (error) {
     if (error instanceof Error) {
-      if ((error as StatusError).status === 422) {
+      if (
+        (error as StatusError).status === 422 ||
+        (error as StatusError).status === 401
+      ) {
         return { credentials: error.message };
       }
     }
