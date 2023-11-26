@@ -28,3 +28,7 @@ export interface CredentialValidationErrors {
   email?: string;
   password?: string;
 }
+
+export interface StatusError extends Error {
+  status?: number;
+}
