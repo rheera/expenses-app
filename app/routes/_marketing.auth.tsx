@@ -1,8 +1,4 @@
-import {
-  redirect,
-  type ActionFunctionArgs,
-  type LinksFunction,
-} from "@remix-run/node";
+import { type ActionFunctionArgs, type LinksFunction } from "@remix-run/node";
 import AuthForm from "~/components/auth/AuthForm";
 import { login, signup } from "~/data/auth.server";
 import { validateCredentials } from "~/data/validation.server";
@@ -21,11 +17,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   try {
     const validatedCredentials = validateCredentials(credentials);
     if (authMode === "login") {
-      await login(validatedCredentials);
-      return redirect("/expenses");
+      return await login(validatedCredentials);
     } else {
-      await signup(validatedCredentials);
-      return redirect("/expenses");
+      return await signup(validatedCredentials);
     }
   } catch (error) {
     if (error instanceof Error) {
