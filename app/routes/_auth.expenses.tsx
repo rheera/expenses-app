@@ -1,4 +1,8 @@
-import type { LoaderFunctionArgs } from "@remix-run/node";
+import {
+  type HeadersFunction,
+  json,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import ExpensesList from "~/components/expenses/ExpensesList";
 import { requireUserSession } from "~/data/auth.server";
@@ -21,7 +25,17 @@ import { getExpenses } from "~/data/expenses.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await requireUserSession(request);
-  return await getExpenses(userId);
+  return json(await getExpenses(userId), {
+    headers: {
+      "Cache-Control": "max-age=3",
+    },
+  });
+};
+
+export const headers: HeadersFunction = ({ loaderHeaders }) => {
+  return {
+    "Cache-Control": loaderHeaders.get("Cache-Control")!,
+  };
 };
 
 export default function Expenses() {

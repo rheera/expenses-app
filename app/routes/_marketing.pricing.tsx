@@ -1,4 +1,4 @@
-import { MetaFunction } from "@remix-run/node";
+import type { HeadersFunction, MetaFunction } from "@remix-run/node";
 import PricingPlan from "~/components/marketing/PricingPlan";
 
 const PRICING_PLANS = [
@@ -41,6 +41,12 @@ const PRICING_PLANS = [
     ),
   },
 ];
+
+export const headers: HeadersFunction = ({ parentHeaders }) => {
+  return {
+    "Cache-Control": parentHeaders.get("Cache-Control") || "max-age=3600",
+  };
+};
 
 export const meta: MetaFunction = () => {
   return [
