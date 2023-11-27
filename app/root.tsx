@@ -10,6 +10,7 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
+  useMatches,
   useRouteError,
 } from "@remix-run/react";
 import sharedStyles from "~/styles/shared.css";
@@ -38,6 +39,9 @@ function Document({
   title?: string;
   children: React.ReactNode;
 }) {
+  const matches = useMatches();
+  const disableJS = matches.some((match: any) => match.handle?.disableJS);
+
   return (
     <html lang="en">
       <head>
@@ -60,7 +64,7 @@ function Document({
       <body>
         {children}
         <ScrollRestoration />
-        <Scripts />
+        {!disableJS && <Scripts />}
         <LiveReload />
       </body>
     </html>
