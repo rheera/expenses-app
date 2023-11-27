@@ -1,6 +1,6 @@
 import ErrorPage from "~/components/util/ErrorPage";
 import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Link,
   Links,
@@ -21,6 +21,16 @@ export const links: LinksFunction = () => [
   // ...
 ];
 
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Spendy" },
+    {
+      name: "description",
+      content: "Welcome to Sepndy, track your expenses!",
+    },
+  ];
+};
+
 function Document({
   title,
   children,
@@ -31,7 +41,7 @@ function Document({
   return (
     <html lang="en">
       <head>
-        <title>{title}</title>
+        {title && <title>{title}</title>}
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />

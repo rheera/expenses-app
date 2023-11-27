@@ -1,10 +1,29 @@
-import { redirect, type ActionFunctionArgs } from "@remix-run/node";
+import type { Expense } from ".prisma/client";
+import {
+  redirect,
+  type ActionFunctionArgs,
+  type MetaFunction,
+} from "@remix-run/node";
 import { useNavigate } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import ExpenseForm from "~/components/expenses/ExpenseForm";
 import Modal from "~/components/util/Modal";
 import { deleteExpense, updateExpense } from "~/data/expenses.server";
 import { validateExpenseInput } from "~/data/validation.server";
+
+export const meta: MetaFunction = ({ matches, params }) => {
+  const expenses = matches.find((match) => match.id === "routes/_auth.expenses")
+    ?.data as Expense[];
+  const expenseData = expenses.find((expense) => expense.id === params.id);
+
+  return [
+    { title: expenseData?.title || "Expense Data" },
+    {
+      name: "description",
+      content: "Update your expense",
+    },
+  ];
+};
 
 export const action = async ({ request, params }: ActionFunctionArgs) => {
   invariant(params.id, "Missing expense id param");

@@ -1,3 +1,4 @@
+import { MetaFunction } from "@remix-run/node";
 import PricingPlan from "~/components/marketing/PricingPlan";
 
 const PRICING_PLANS = [
@@ -41,6 +42,16 @@ const PRICING_PLANS = [
   },
 ];
 
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Spendy | Pricing" },
+    {
+      name: "description",
+      content: "See our pricing plans",
+    },
+  ];
+};
+
 export default function PricingPage() {
   return (
     <main id="pricing">
@@ -60,5 +71,3 @@ export default function PricingPage() {
     </main>
   );
 }
-
-export function meta() {}

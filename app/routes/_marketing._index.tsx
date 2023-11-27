@@ -5,7 +5,7 @@ export const meta: MetaFunction = () => {
   return [
     { title: "Spendy" },
     {
-      name: "Spendy - Expense Tracking App",
+      name: "description",
       content: "Welcome to Sepndy, track your expenses!",
     },
   ];
