@@ -1,5 +1,7 @@
+import { LoaderFunctionArgs } from "@remix-run/node";
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import ExpensesList from "~/components/expenses/ExpensesList";
+import { requireUserSession } from "~/data/auth.server";
 import { getExpenses } from "~/data/expenses.server";
 
 // const DUMMY_EXPENSES = [
@@ -17,8 +19,9 @@ import { getExpenses } from "~/data/expenses.server";
 //   },
 // ];
 
-export const loader = () => {
-  return getExpenses();
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  await requireUserSession(request);
+  return await getExpenses();
 };
 
 export default function Expenses() {
