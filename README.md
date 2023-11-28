@@ -4,7 +4,7 @@
 
 # Spendy - An app to keep track of all your expenses
 
-Part of Academind's Remix.js Practical Guide but updated to be made with TypeScript and Remix v2. A site where people can keep track of their expenses. Contains user authentication so each user can only access their own expenses. Live link:
+Part of Academind's Remix.js Practical Guide but updated to be made with TypeScript and Remix v2. A site where people can keep track of their expenses. Contains user authentication so each user can only access their own expenses. Live link: https://spendy-expenses.netlify.app/
 
 ## Table of Contents
 
