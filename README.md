@@ -20,7 +20,8 @@ Made with Remix (React, React Router), TypeScript, MongoDB, Prisma, heroicons.
 
 - [x] Build routes and their pages
 - [x] Add MongoDB backend and connect it to Remix with Prisma
-- [ ] Validate Form data on server and client side to send to database
+- [x] Validate Form data on server and client side to send to database
+- [x] Add auth 
 
 ## Stretch Goals
 
