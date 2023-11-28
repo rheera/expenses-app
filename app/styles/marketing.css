@@ -2,6 +2,12 @@
   margin: 6rem auto;
 }
 
+@media (max-width: 600px) {
+  .marketing-section {
+    padding: 0 1rem;
+  }
+}
+
 .marketing-section header {
   display: flex;
   gap: 2rem;
@@ -75,6 +81,17 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   color: var(--color-gray-500);
   width: 50%;
+}
+
+@media (max-width: 600px) {
+  #pricing-plans {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .plan {
+    width: 80%;
+  }
 }
 
 .plan header {

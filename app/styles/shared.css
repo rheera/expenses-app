@@ -84,6 +84,15 @@ button {
   flex: 1;
 }
 
+@media (max-width: 600px) {
+  #main-header {
+    padding: 1rem 2%;
+  }
+  #main-header ul {
+    gap: 1rem;
+  }
+}
+
 #logo {
   color: var(--color-primary-10);
   font-size: 1.15rem;
@@ -96,6 +105,11 @@ button {
 
 #img-logo {
   max-width: 100px;
+}
+@media (max-width: 600px) {
+  #img-logo {
+    max-width: 90px;
+  }
 }
 
 .cta {
@@ -114,6 +128,13 @@ button {
 }
 .cta-login {
   min-width: unset;
+}
+
+@media (max-width: 600px) {
+  .cta-login {
+    max-width: 100px;
+    padding: 0.75rem 1rem;
+  }
 }
 .cta:hover {
   background-color: var(--color-secondary-600);
@@ -175,6 +196,12 @@ button {
   border: none;
   background-color: var(--color-gray-50);
   animation: fade-slide-down 0.5s ease-out forwards;
+}
+
+@media (max-width: 600px) {
+  .modal {
+    width: 100%;
+  }
 }
 
 .error {

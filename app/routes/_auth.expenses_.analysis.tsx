@@ -22,7 +22,7 @@ export default function ExpensesAnalysis() {
   const expenses = useLoaderData<typeof loader>();
 
   return (
-    <main>
+    <main className="analysis-cnt">
       <Chart expenses={expenses} />
       <ExpenseStatistics expenses={expenses} />
     </main>
